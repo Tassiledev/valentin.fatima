@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Para Fátima 💌</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Quicksand:wght@400;600;700&display=swap');
+
+    :root{
+      --ink:#3a2a2f;
+      --paper:#ffffffdd;
+      --shadow: 0 22px 60px rgba(0,0,0,.16);
+      --pink:#ff7aa6;
+      --pink2:#ffb3c6;
+      --yes:#2ecc71;
+      --no:#ff4d6d;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      min-height:100vh;
+      display:grid;
+      place-items:center;
+      font-family:"Quicksand", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--ink);
+      overflow:auto;
+      background:
+        radial-gradient(circle at 20% 20%, #ffe3ec 0%, transparent 45%),
+        radial-gradient(circle at 80% 30%, #ffeef5 0%, transparent 45%),
+        radial-gradient(circle at 50% 80%, #ffd6e3 0%, transparent 50%),
+        linear-gradient(180deg, #ffd1dc 0%, #ff9eb5 100%);
+    }
+
+    /* textura suave */
+    .paperTexture{
+      position:fixed; inset:0;
+      background:
+        repeating-linear-gradient(0deg,
+          rgba(255,255,255,.055), rgba(255,255,255,.055) 2px,
+          rgba(0,0,0,0) 2px, rgba(0,0,0,0) 9px);
+      opacity:.35;
+      pointer-events:none;
+      mix-blend-mode: soft-light;
+    }
+
+    /* corazones flotando sutiles */
+    .hearts{ position:fixed; inset:0; pointer-events:none; opacity:.22; }
+    .heart{
+      position:absolute;
+      width:14px; height:14px;
+      transform: rotate(45deg);
+      animation: floatUp linear infinite;
+      background: rgba(255,255,255,.78);
+      border-radius: 4px;
+      filter: blur(.15px);
+    }
+    .heart:before, .heart:after{
+      content:"";
+      position:absolute; width:14px; height:14px;
+      background: inherit; border-radius:50%;
+    }
+    .heart:before{ left:-7px; top:0; }
+    .heart:after{ top:-7px; left:0; }
+    @keyframes floatUp{
+      from{ transform: translateY(40vh) rotate(45deg); opacity:0; }
+      15%{opacity:1}
+      to{ transform: translateY(-120vh) rotate(45deg); opacity:0; }
+    }
+
+    /* decoraciones laterales */
+    .sideDecor{
+      position:fixed; top:0; bottom:0;
+      width:min(220px, 20vw);
+      pointer-events:none;
+      opacity:.55;
+      filter: drop-shadow(0 14px 26px rgba(0,0,0,.12));
+    }
+    .sideDecor.left{ left:-30px; }
+    .sideDecor.right{ right:-30px; transform: scaleX(-1); }
+
+    .sideDecor img{
+      position:absolute;
+      width:150px;
+      height:auto;
+      opacity:.95;
+    }
+    .sideDecor .f1{ top:10%; left:10px; transform: rotate(-8deg); }
+    .sideDecor .f2{ top:42%; left:40px; transform: rotate(9deg); width:170px; opacity:.9; }
+    .sideDecor .f3{ top:70%; left:0px; transform: rotate(-12deg); width:140px; opacity:.85; }
+
+    .wrap{ width:min(920px, 92vw); padding:20px; }
+
+    .card{
+      background:var(--paper);
+      border:1px solid rgba(255,255,255,.72);
+      border-radius:26px;
+      box-shadow:var(--shadow);
+      padding:26px 22px;
+      backdrop-filter: blur(10px);
+      text-align:center;
+      position:relative;
+    }
+
+    .title{
+      font-family:"Dancing Script", cursive;
+      font-weight:700;
+      font-size:clamp(34px, 5vw, 56px);
+      margin:0 0 6px;
+      color:#b93a5a;
+      letter-spacing:.2px;
+    }
+    .subtitle{
+      margin:0;
+      font-size:clamp(16px, 2.2vw, 20px);
+      opacity:.92;
+    }
+
+    .row{
+      margin-top:18px;
+      display:flex;
+      justify-content:center;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+    button{
+      border:0;
+      cursor:pointer;
+      font-weight:800;
+      padding:14px 18px;
+      border-radius:18px;
+      box-shadow: 0 12px 28px rgba(0,0,0,.12);
+      transition: transform .12s ease, filter .12s ease, opacity .12s ease;
+      font-size:18px;
+      user-select:none;
+      min-width:130px;
+    }
+    button:active{ transform: scale(.98); }
+
+    .btnNo{ background:var(--no); color:white; }
+    .btnYes{ background:var(--yes); color:white; }
+    .btnYes.grow{ transform: scale(1.09); filter: brightness(1.06); }
+
+    .hint{
+      min-height:34px;
+      margin-top:14px;
+      font-weight:800;
+      letter-spacing:.3px;
+      color:#b93a5a;
+    }
+
+    /* intro gatito */
+    .topCute{
+      display:flex;
+      justify-content:center;
+      margin-bottom:10px;
+    }
+    .topCute img{
+      width:min(150px, 35vw);
+      height:auto;
+      filter: drop-shadow(0 14px 20px rgba(0,0,0,.10));
+    }
+
+    /* pantalla AW PLEASE */
+    .kitty{
+      width:min(170px, 45vw);
+      height:auto;
+      margin:6px auto 8px;
+      display:block;
+      filter: drop-shadow(0 14px 20px rgba(0,0,0,.10));
+    }
+    .bigText{
+      font-family:"Dancing Script", cursive;
+      font-size:clamp(34px, 5vw, 54px);
+      margin:6px 0 4px;
+      color:#b93a5a;
+    }
+    .smallText{
+      margin:0;
+      opacity:.82;
+      font-weight:700;
+      letter-spacing:.2px;
+    }
+    .backBtn{
+      background:#ffffff;
+      color:#b93a5a;
+      border:1px solid rgba(185,58,90,.25);
+    }
+
+    /* flores + carta */
+    .scene{
+      margin-top:14px;
+      display:grid;
+      place-items:center;
+      position:relative;
+      min-height:360px;
+    }
+    .bouquet{
+      position:relative;
+      width:min(520px, 86vw);
+      height:260px;
+      display:grid;
+      place-items:center;
+      margin:0 auto;
+    }
+    .flower{
+      position:absolute;
+      height:auto;
+      filter: drop-shadow(0 16px 26px rgba(0,0,0,.12));
+    }
+    .flower.a{ width:210px; top:-10px; left:30px; transform: rotate(-8deg); }
+    .flower.b{ width:230px; top:-20px; right:22px; transform: rotate(10deg); }
+    .flower.c{ width:250px; top:35px; left:140px; transform: rotate(2deg); opacity:.98; }
+
+    .letterWrap{
+      margin:8px auto 0;
+      display:flex;
+      justify-content:center;
+    }
+    .letter{
+      width:min(360px, 82vw);
+      border-radius:22px;
+      cursor:pointer;
+      position:relative;
+      transition: transform .15s ease;
+      user-select:none;
+    }
+    .letter:hover{ transform: translateY(-2px) scale(1.01); }
+    .letter img{
+      width:100%;
+      height:auto;
+      display:block;
+      filter: drop-shadow(0 16px 24px rgba(0,0,0,.14));
+    }
+    .loveBox{
+      margin:16px auto 0;
+      display:none;
+      max-width:760px;
+      text-align:left;
+      background: rgba(255,255,255,.72);
+      border:1px solid rgba(255,255,255,.7);
+      border-radius:18px;
+      padding:18px 16px;
+      animation: pop .18s ease-out;
+    }
+    @keyframes pop{
+      from{ transform: translateY(10px); opacity:.2; }
+      to{ transform: translateY(0); opacity:1; }
+    }
+    .loveBox h2{
+      font-family:"Dancing Script", cursive;
+      margin:0 0 8px;
+      font-size:34px;
+      color:#b93a5a;
+    }
+    .loveBox p{ margin:0 0 10px; line-height:1.5; }
+    
+    /* stickers en la carta (manzana + corazones) */
+    .sticker{
+      position:absolute;
+      height:auto;
+      filter: drop-shadow(0 12px 16px rgba(0,0,0,.14));
+      pointer-events:none;
+    }
+    .sticker.apple{
+      width:62px;
+      top:14px;
+      right:14px;
+      transform: rotate(8deg);
+      opacity:.98;
+    }
+    .sticker.hearts{
+      width:58px;
+      top:58px;
+      right:6px;
+      transform: rotate(-10deg);
+      opacity:.98;
+    }
+
+    .couplePic{
+      display:block;
+      margin:14px auto 0;
+      width:min(220px, 60vw);
+      opacity:.92;
+      filter: drop-shadow(0 10px 18px rgba(0,0,0,.12));
+      border-radius: 16px;
+    }
+
+    .footerTip{ margin-top:10px; font-size:13px; opacity:.72; }
+  
+/* OCULTAR FLOR DEL MEDIO */
+.flower.c{
+  display:none !important;
+}
+
+</style>
+</head>
+
+<body>
+  <div class="paperTexture"></div>
+  <div class="hearts" id="hearts"></div>
+
+  <div class="sideDecor left" aria-hidden="true">
+    <img class="f1" src="assets/flower_sakura.png" alt="">
+    <img class="f2" src="assets/flower_pink_lily.png" alt="">
+    <img class="f3" src="assets/flower_lily.png" alt="">
+  </div>
+  <div class="sideDecor right" aria-hidden="true">
+    <img class="f1" src="assets/flower_sakura.png" alt="">
+    <img class="f2" src="assets/flower_pink_lily.png" alt="">
+    <img class="f3" src="assets/flower_lily.png" alt="">
+  </div>
+
+  <div class="wrap">
+    <div class="card" id="screen"></div>
+  </div>
+
+<script>
+  // Corazones flotando (suaves)
+  const hearts = document.getElementById('hearts');
+  for (let i=0;i<16;i++){
+    const h=document.createElement('div');
+    h.className='heart';
+    h.style.left = Math.random()*100 + 'vw';
+    h.style.animationDuration = (9 + Math.random()*11) + 's';
+    h.style.animationDelay = (Math.random()*7) + 's';
+    h.style.opacity = (0.10 + Math.random()*0.22);
+    h.style.transform = `rotate(45deg) scale(${0.7 + Math.random()*1.2})`;
+    hearts.appendChild(h);
+  }
+
+  const screen = document.getElementById('screen');
+
+  // 📝 EDITÁ ACÁ la carta
+  const loveLetterText = `
+    Fátima, mi amor:<br><br>
+    Hoy quería darte algo simple, pero que salga de mí: unas palabras que te abracen cuando las leas.<br><br>
+    Gracias por tu forma de estar, por tu paciencia, por tu ternura… por hacer que lo cotidiano se sienta especial.
+    A tu lado me siento en casa, incluso cuando el mundo se pone pesado.<br><br>
+    Te elijo de verdad: con tus días buenos y tus días difíciles, con tus sueños y tus miedos.
+    Y si alguna vez dudás, acordate de esto: yo estoy acá, para cuidarte y para quererte bonito.<br><br>
+    Feliz San Valentín, mi vida. Ojalá tengamos mil momentos más, de esos que se recuerdan por lo felices que fuimos.<br><br>
+    <b>Te amo.</b>
+  `;
+
+  function renderIntro(){
+    screen.innerHTML = `
+      <div class="topCute">
+        <img src="assets/cat_hug.png" alt="" aria-hidden="true">
+      </div>
+
+      <h1 class="title">Hola mi amor</h1>
+      <p class="subtitle">¿Te gustaría ver el regalo?</p>
+
+      <div class="row">
+        <button class="btnNo" id="btnNo">X</button>
+        <button class="btnYes" id="btnYes">✓</button>
+      </div>
+
+      <div class="hint" id="hint"></div>
+      <div class="footerTip">Hecho para vos, Fátima.</div>
+    `;
+
+    const btnNo = document.getElementById('btnNo');
+    const btnYes = document.getElementById('btnYes');
+
+    btnNo.addEventListener('click', () => renderAwPlease());
+    btnYes.addEventListener('click', () => renderGift());
+  }
+
+  function renderAwPlease(){
+    screen.innerHTML = `
+      <img class="kitty" src="assets/cat_hearts.png" alt="gatito">
+
+      <div class="bigText">Awww… ¿por favor?</div>
+      <p class="smallText">Preparé este regalito para vos.</p>
+
+      <div class="row">
+        <button class="backBtn" id="backBtn">← Volver</button>
+        <button class="btnYes grow" id="btnYes">✓</button>
+      </div>
+    `;
+
+    document.getElementById('backBtn').addEventListener('click', () => renderIntro());
+    document.getElementById('btnYes').addEventListener('click', () => renderGift());
+  }
+
+  function renderGift(){
+    screen.innerHTML = `
+      <h1 class="title">Flores para vos</h1>
+      <p class="subtitle">Clickeá la carta para una sorpresa</p>
+
+      <div class="scene">
+        <div class="bouquet" aria-label="Flores">
+          <img class="flower a" src="assets/flower_sakura.png" alt="Flor">
+          <img class="flower b" src="assets/flower_pink_lily.png" alt="Flor">
+          <img class="flower c" src="assets/flower_lily.png" alt="Flor">
+          </div>
+
+        <div class="letterWrap">
+          <div class="letter" id="letter" aria-label="Carta">
+            <img src="assets/envelope.png" alt="Carta">
+            <img class="sticker apple" src="assets/apple_heart.png" alt="">
+            <img class="sticker hearts" src="assets/hearts_patch.png" alt="">
+          </div>
+        </div>
+      </div>
+
+      <div class="loveBox" id="loveBox">
+        <h2>Para vos, mi amor</h2>
+        <p>${loveLetterText}</p>
+        <img src="assets/couple.png" class="couplePic" alt="Nosotros" />
+      </div>
+`;
+
+    const letter = document.getElementById('letter');
+    const loveBox = document.getElementById('loveBox');
+
+    letter.addEventListener('click', () => {
+      loveBox.style.display = 'block';
+      loveBox.scrollIntoView({behavior:'smooth', block:'start'});
+      letter.style.transform = 'translateY(-2px) scale(1.02)';
+      setTimeout(()=> letter.style.transform = '', 180);
+    });
+  }
+
+  renderIntro();
+</script>
+</body>
+</html>
