@@ -288,13 +288,7 @@
     }
 
     .footerTip{ margin-top:10px; font-size:13px; opacity:.72; }
-  
-/* OCULTAR FLOR DEL MEDIO */
-.flower.c{
-  display:none !important;
-}
-
-</style>
+  </style>
 </head>
 
 <body>
@@ -302,14 +296,14 @@
   <div class="hearts" id="hearts"></div>
 
   <div class="sideDecor left" aria-hidden="true">
-    <img class="f1" src="assets/flower_sakura.png" alt="">
-    <img class="f2" src="assets/flower_pink_lily.png" alt="">
-    <img class="f3" src="assets/flower_lily.png" alt="">
+    <img class="f1" src="flower_sakura.png" alt="">
+    <img class="f2" src="flower_pink_lily.png" alt="">
+    <img class="f3" src="flower_lily.png" alt="">
   </div>
   <div class="sideDecor right" aria-hidden="true">
-    <img class="f1" src="assets/flower_sakura.png" alt="">
-    <img class="f2" src="assets/flower_pink_lily.png" alt="">
-    <img class="f3" src="assets/flower_lily.png" alt="">
+    <img class="f1" src="flower_sakura.png" alt="">
+    <img class="f2" src="flower_pink_lily.png" alt="">
+    <img class="f3" src="flower_lily.png" alt="">
   </div>
 
   <div class="wrap">
@@ -347,7 +341,7 @@
   function renderIntro(){
     screen.innerHTML = `
       <div class="topCute">
-        <img src="assets/cat_hug.png" alt="" aria-hidden="true">
+        <img src="cat_hug.png" alt="" aria-hidden="true">
       </div>
 
       <h1 class="title">Hola mi amor</h1>
@@ -371,7 +365,7 @@
 
   function renderAwPlease(){
     screen.innerHTML = `
-      <img class="kitty" src="assets/cat_hearts.png" alt="gatito">
+      <img class="kitty" src="cat_hearts.png" alt="gatito">
 
       <div class="bigText">Awww… ¿por favor?</div>
       <p class="smallText">Preparé este regalito para vos.</p>
@@ -393,16 +387,16 @@
 
       <div class="scene">
         <div class="bouquet" aria-label="Flores">
-          <img class="flower a" src="assets/flower_sakura.png" alt="Flor">
-          <img class="flower b" src="assets/flower_pink_lily.png" alt="Flor">
-          <img class="flower c" src="assets/flower_lily.png" alt="Flor">
+          <img class="flower a" src="flower_sakura.png" alt="Flor">
+          <img class="flower b" src="flower_pink_lily.png" alt="Flor">
+          <img class="flower c" src="flower_lily.png" alt="Flor">
           </div>
 
         <div class="letterWrap">
           <div class="letter" id="letter" aria-label="Carta">
-            <img src="assets/envelope.png" alt="Carta">
-            <img class="sticker apple" src="assets/apple_heart.png" alt="">
-            <img class="sticker hearts" src="assets/hearts_patch.png" alt="">
+            <img src="envelope.png" alt="Carta">
+            <img class="sticker apple" src="apple_heart.png" alt="">
+            <img class="sticker hearts" src="hearts_patch.png" alt="">
           </div>
         </div>
       </div>
@@ -410,7 +404,7 @@
       <div class="loveBox" id="loveBox">
         <h2>Para vos, mi amor</h2>
         <p>${loveLetterText}</p>
-        <img src="assets/couple.png" class="couplePic" alt="Nosotros" />
+        <img src="couple.png" class="couplePic" alt="Nosotros" />
       </div>
 `;
 
